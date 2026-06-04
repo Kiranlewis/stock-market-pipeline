@@ -1,0 +1,23 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfvars
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+venv/
+
+# AWS
+*.csv
+.aws/
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
