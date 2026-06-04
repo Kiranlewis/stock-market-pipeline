@@ -3,6 +3,8 @@
 *.tfstate
 *.tfstate.backup
 *.tfvars
+.terraform.tfstate.lock.info
+
 
 # Python
 __pycache__/
