@@ -1,9 +1,10 @@
 # Terraform
-.terraform/
+**/.terraform/
 *.tfstate
 *.tfstate.backup
 *.tfvars
-.terraform.tfstate.lock.info
+*.tfstate.lock.info
+.terraform.lock.hcl
 
 
 # Python
