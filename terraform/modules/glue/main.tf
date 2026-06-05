@@ -89,8 +89,6 @@ resource "aws_glue_crawler" "bronze" {
     path = "s3://${var.bronze_bucket_name}"
   }
 
-  schedule = "cron(0 * * * ? *)"
-
   tags = {
     Project     = var.project_name
     Environment = var.environment
@@ -107,8 +105,6 @@ resource "aws_glue_crawler" "silver" {
     path = "s3://${var.silver_bucket_name}"
   }
 
-  schedule = "cron(0 * * * ? *)"
-
   tags = {
     Project     = var.project_name
     Environment = var.environment
@@ -124,8 +120,6 @@ resource "aws_glue_crawler" "gold" {
   s3_target {
     path = "s3://${var.gold_bucket_name}"
   }
-
-  schedule = "cron(0 * * * ? *)"
 
   tags = {
     Project     = var.project_name
