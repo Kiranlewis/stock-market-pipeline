@@ -29,3 +29,18 @@ output "glue_role_arn" {
   description = "Glue IAM role ARN"
   value       = module.iam.glue_role_arn
 }
+output "bronze_to_silver_job_name" {
+  value = module.glue.bronze_to_silver_job_name
+}
+output "silver_to_gold_job_name" {
+  value = module.glue.silver_to_gold_job_name
+}
+output "bronze_crawler_name" {
+  value = module.glue.bronze_crawler_name
+}
+output "silver_crawler_name" {
+  value = module.glue.silver_crawler_name
+}
+output "gold_crawler_name" {
+  value = module.glue.gold_crawler_name
+}

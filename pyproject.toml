@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "stock-market-pipeline"
+version = "0.1.0"
+description = "Real-time stock market data pipeline on AWS"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.flake8]
+max-line-length = 100
+exclude = [
+    ".terraform",
+    ".github",
+    "venv"
+]
