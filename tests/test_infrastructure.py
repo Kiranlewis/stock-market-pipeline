@@ -41,13 +41,13 @@ def gluerole():
 
 class TestS3Buckets:
 
-    def test_bronze_bucket_exists(self,buckets):
+    def test_bronze_bucket_exists(self, buckets):
         assert f"{PROJECT}-bronze-{ENV}" in buckets
 
-    def test_silver_bucket_exists(self,buckets):
+    def test_silver_bucket_exists(self, buckets):
         assert f"{PROJECT}-silver-{ENV}" in buckets
 
-    def test_gold_bucket_exists(self,buckets):
+    def test_gold_bucket_exists(self, buckets):
         assert f"{PROJECT}-gold-{ENV}" in buckets
 
     def test_bronze_bucket_is_private(self):
@@ -65,15 +65,15 @@ class TestS3Buckets:
 
 class TestIAMRoles:
 
-    def test_lambda_role_exists(self,lamdbarole):
+    def test_lambda_role_exists(self, lamdbarole):
         assert lamdbarole['Role']['RoleName'] == \
             f"{PROJECT}-lambda-role-{ENV}"
 
-    def test_glue_role_exists(self,gluerole):
+    def test_glue_role_exists(self, gluerole):
         assert gluerole['Role']['RoleName'] == \
             f"{PROJECT}-glue-role-{ENV}"
 
-    def test_lambda_role_has_correct_service(self,lamdbarole):
+    def test_lambda_role_has_correct_service(self, lamdbarole):
         policy = lamdbarole['Role']['AssumeRolePolicyDocument']
         services = [
             s['Principal']['Service']
@@ -81,7 +81,7 @@ class TestIAMRoles:
         ]
         assert 'lambda.amazonaws.com' in services
 
-    def test_glue_role_has_correct_service(self,gluerole):
+    def test_glue_role_has_correct_service(self, gluerole):
         policy = gluerole['Role']['AssumeRolePolicyDocument']
         services = [
             s['Principal']['Service']
@@ -99,11 +99,11 @@ class TestGlueResources:
         assert response['Database']['Name'] == \
             f"{PROJECT}_{ENV}"
 
-    def test_bronze_to_silver_job_exists(self,gluejob_bronze_silver):
+    def test_bronze_to_silver_job_exists(self, gluejob_bronze_silver):
         assert gluejob_bronze_silver['Job']['Name'] == \
             f"{PROJECT}-bronze-to-silver-{ENV}"
 
-    def test_silver_to_gold_job_exists(self,gluejob_silver_gold):
+    def test_silver_to_gold_job_exists(self, gluejob_silver_gold):
         assert gluejob_silver_gold['Job']['Name'] == \
             f"{PROJECT}-silver-to-gold-{ENV}"
 
@@ -128,5 +128,5 @@ class TestGlueResources:
         assert response['Crawler']['Name'] == \
             f"{PROJECT}-gold-crawler-{ENV}"
 
-    def test_glue_jobs_use_correct_role(self,gluejob_bronze_silver):
+    def test_glue_jobs_use_correct_role(self, gluejob_bronze_silver):
         assert "glue-role" in gluejob_bronze_silver['Job']['Role']
