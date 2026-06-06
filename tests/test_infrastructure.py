@@ -1,5 +1,4 @@
 import boto3
-import pytest
 
 s3  = boto3.client('s3',  region_name='ap-south-1')
 iam = boto3.client('iam', region_name='ap-south-1')
@@ -30,16 +29,17 @@ class TestS3Buckets:
             Bucket=f"{PROJECT}-bronze-{ENV}"
         )
         config = response['PublicAccessBlockConfiguration']
-        assert config['BlockPublicAcls']       == True
-        assert config['BlockPublicPolicy']     == True
-        assert config['IgnorePublicAcls']      == True
-        assert config['RestrictPublicBuckets'] == True
+        assert config['BlockPublicAcls']       
+        assert config['BlockPublicPolicy']     
+        assert config['IgnorePublicAcls']      
+        assert config['RestrictPublicBuckets'] 
 
     def test_bronze_bucket_in_correct_region(self):
         response = s3.get_bucket_location(
             Bucket=f"{PROJECT}-bronze-{ENV}"
         )
         assert response['LocationConstraint'] == 'ap-south-1'
+
 
 class TestIAMRoles:
 
@@ -78,6 +78,7 @@ class TestIAMRoles:
             for s in policy['Statement']
         ]
         assert 'glue.amazonaws.com' in services
+
 
 class TestGlueResources:
 
@@ -127,4 +128,4 @@ class TestGlueResources:
         response = glue.get_job(
             JobName=f"{PROJECT}-bronze-to-silver-{ENV}"
         )
-        assert f"glue-role" in response['Job']['Role']
+        assert "glue-role" in response['Job']['Role']
