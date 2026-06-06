@@ -1,12 +1,11 @@
 import boto3
 
-s3  = boto3.client('s3',  region_name='ap-south-1')
+s3 = boto3.client('s3',  region_name='ap-south-1')
 iam = boto3.client('iam', region_name='ap-south-1')
 glue = boto3.client('glue', region_name='ap-south-1')
 
 PROJECT = "stock-market-pipeline"
-ENV     = "dev"
-
+ENV = "dev"
 class TestS3Buckets:
 
     def test_bronze_bucket_exists(self):
