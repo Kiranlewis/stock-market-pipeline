@@ -6,6 +6,8 @@ glue = boto3.client('glue', region_name='ap-south-1')
 
 PROJECT = "stock-market-pipeline"
 ENV = "dev"
+
+
 class TestS3Buckets:
 
     def test_bronze_bucket_exists(self):
@@ -24,9 +26,7 @@ class TestS3Buckets:
         assert f"{PROJECT}-gold-{ENV}" in buckets
 
     def test_bronze_bucket_is_private(self):
-        response = s3.get_public_access_block(
-            Bucket=f"{PROJECT}-bronze-{ENV}"
-        )
+        response = s3.get_public_access_block(Bucket=f"{PROJECT}-bronze-{ENV}")
         config = response['PublicAccessBlockConfiguration']
         assert config['BlockPublicAcls']       
         assert config['BlockPublicPolicy']     
@@ -34,25 +34,19 @@ class TestS3Buckets:
         assert config['RestrictPublicBuckets'] 
 
     def test_bronze_bucket_in_correct_region(self):
-        response = s3.get_bucket_location(
-            Bucket=f"{PROJECT}-bronze-{ENV}"
-        )
+        response = s3.get_bucket_location(Bucket=f"{PROJECT}-bronze-{ENV}")
         assert response['LocationConstraint'] == 'ap-south-1'
 
 
 class TestIAMRoles:
 
     def test_lambda_role_exists(self):
-        response = iam.get_role(
-            RoleName=f"{PROJECT}-lambda-role-{ENV}"
-        )
+        response = iam.get_role(RoleName=f"{PROJECT}-lambda-role-{ENV}")
         assert response['Role']['RoleName'] == \
             f"{PROJECT}-lambda-role-{ENV}"
 
     def test_glue_role_exists(self):
-        response = iam.get_role(
-            RoleName=f"{PROJECT}-glue-role-{ENV}"
-        )
+        response = iam.get_role(RoleName=f"{PROJECT}-glue-role-{ENV}")
         assert response['Role']['RoleName'] == \
             f"{PROJECT}-glue-role-{ENV}"
 
