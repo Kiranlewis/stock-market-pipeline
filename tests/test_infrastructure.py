@@ -53,9 +53,9 @@ class TestS3Buckets:
     def test_bronze_bucket_is_private(self):
         response = s3.get_public_access_block(Bucket=f"{PROJECT}-bronze-{ENV}")
         config = response['PublicAccessBlockConfiguration']
-        assert config['BlockPublicAcls']   
+        assert config['BlockPublicAcls']
         assert config['BlockPublicPolicy']
-        assert config['IgnorePublicAcls']     
+        assert config['IgnorePublicAcls']    
         assert config['RestrictPublicBuckets']
 
     def test_bronze_bucket_in_correct_region(self):
