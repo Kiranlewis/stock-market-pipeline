@@ -55,7 +55,7 @@ class TestS3Buckets:
         config = response['PublicAccessBlockConfiguration']
         assert config['BlockPublicAcls']
         assert config['BlockPublicPolicy']
-        assert config['IgnorePublicAcls']    
+        assert config['IgnorePublicAcls']
         assert config['RestrictPublicBuckets']
 
     def test_bronze_bucket_in_correct_region(self):
