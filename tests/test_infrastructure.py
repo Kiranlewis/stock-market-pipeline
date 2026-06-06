@@ -8,30 +8,36 @@ glue = boto3.client('glue', region_name='ap-south-1')
 PROJECT = "stock-market-pipeline"
 ENV = "dev"
 
+
 @pytest.fixture(scope='session')
 def buckets():
     response = s3.list_buckets()
     return [b["Name"] for b in response["Buckets"]]
+
 
 @pytest.fixture(scope='session')
 def gluejob_bronze_silver():
     response = glue.get_job(JobName=f"{PROJECT}-bronze-to-silver-{ENV}")
     return response
 
+
 @pytest.fixture(scope='session')
 def gluejob_silver_gold():
     response = glue.get_job(JobName=f"{PROJECT}-silver-to-gold-{ENV}")
     return response
+
 
 @pytest.fixture(scope='session')
 def lamdbarole():
     response = iam.get_role(RoleName=f"{PROJECT}-lambda-role-{ENV}")
     return response
 
+
 @pytest.fixture(scope='session')
 def gluerole():
     response = iam.get_role(RoleName=f"{PROJECT}-glue-role-{ENV}")
     return response
+
 
 class TestS3Buckets:
 
