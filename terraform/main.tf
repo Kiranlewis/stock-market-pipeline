@@ -27,3 +27,13 @@ module "iam" {
   silver_bucket_name = module.s3.silver_bucket_name
   gold_bucket_name   = module.s3.gold_bucket_name
 }
+module "glue" {
+  source              = "./modules/glue"
+  project_name        = var.project_name
+  environment         = var.environment
+  glue_role_arn       = module.iam.glue_role_arn
+  bronze_bucket_name  = module.s3.bronze_bucket_name
+  silver_bucket_name  = module.s3.silver_bucket_name
+  gold_bucket_name    = module.s3.gold_bucket_name
+  scripts_bucket_name = module.s3.bronze_bucket_name
+}
