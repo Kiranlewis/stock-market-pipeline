@@ -17,3 +17,7 @@ variable "environment" {
   type        = string
   default     = "dev"
 }
+variable "massive_api_key" {
+  type      = string
+  sensitive = true
+}

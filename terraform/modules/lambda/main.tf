@@ -9,7 +9,8 @@ resource "aws_lambda_function" "stock_ingestion" {
     memory_size = 512
     environment {
       variables = {
-        BUCKET_NAME = var.bronze_bucket_name
+        BUCKET_NAME = var.bronze_bucket_name,
+        API_KEY = var.massive_api_key
       }
     }
   

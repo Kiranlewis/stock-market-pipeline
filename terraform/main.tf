@@ -45,4 +45,5 @@ module "lambda" {
     lambda_role_arn = module.iam.lambda_role_arn
     bronze_bucket_name = module.s3.bronze_bucket_name
     lambda_zip_path = "../ingestion.zip"  
+    massive_api_key = var.massive_api_key
 }
