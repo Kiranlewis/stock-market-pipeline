@@ -44,3 +44,7 @@ output "silver_crawler_name" {
 output "gold_crawler_name" {
   value = module.glue.gold_crawler_name
 }
+
+output "lamdba_function_name" {
+  value = module.lambda.lambda_function_name
+}
