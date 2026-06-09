@@ -37,3 +37,12 @@ module "glue" {
   gold_bucket_name    = module.s3.gold_bucket_name
   scripts_bucket_name = module.s3.bronze_bucket_name
 }
+
+module "lambda" {
+    source ="./modules/lambda"
+    project_name = var.project_name
+    environment = var.environment
+    lambda_role_arn = module.iam.lambda_role_arn
+    bronze_bucket_name = module.s3.bronze_bucket_name
+    lambda_zip_path = "../ingestion.zip"  
+}
