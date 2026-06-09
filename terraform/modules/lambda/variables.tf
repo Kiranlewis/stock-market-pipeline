@@ -22,3 +22,7 @@ variable "lambda_zip_path" {
     description = "Lambda zip path"
     type = string
 }
+
+variable "massive_api_key" {
+  type = string
+}
